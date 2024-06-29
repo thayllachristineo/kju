@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const _IconButtonStyled = styled.button`
   cursor: pointer;

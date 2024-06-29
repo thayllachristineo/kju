@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes } from "react";
-import styled from "styled-components";
+import React, { InputHTMLAttributes } from 'react';
+import styled from 'styled-components';
 
 export const Input = styled.input`
   padding: 0 8px;
@@ -13,7 +13,7 @@ export const Input = styled.input`
   font-size: 16px;
   line-height: 18px;
   font-weight: normal;
-  border-radius:8px;
+  border-radius: 8px;
   :focus {
     outline: none;
     border: 1px solid #007c89;
@@ -30,7 +30,9 @@ const TextField = (props: Props) => {
     <div>
       <label htmlFor={props.id}>{props.label}</label>
       <Input {...props} />
-      <span style={{fontSize: 12, color: 'red'}}>{props.error}</span>
+      <span style={{ fontSize: 12, color: 'red' }}>
+        {props.error}
+      </span>
     </div>
   );
 };

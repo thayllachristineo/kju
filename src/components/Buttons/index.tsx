@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Button = styled.button`
   outline: none;
@@ -26,9 +26,8 @@ export const ButtonSmall = styled.button<{
   border: none;
   padding: 4px 16px;
   background-color: ${(props) => props.bgcolor ?? 'none'};
-  color: ${(props) => props.color ?? "#000"};
+  color: ${(props) => props.color ?? '#000'};
   cursor: pointer;
 `;
-
 
 export default Button;
