@@ -5,7 +5,6 @@ export const Container = styled.div`
   grid-gap: 24px;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   margin-top: 24px;
-  overflow-x: auto;
 `;
 
 export const Column = styled.div<{
@@ -22,6 +21,7 @@ export const TitleColumn = styled.h3<{ color: string }>`
 `;
 
 export const ColumnContent = styled.div`
+  height: 85%;
   overflow: auto;
 `;
 
