@@ -14,13 +14,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.6.0",
     "axios": "^1.7.2",
-    "json-server": "^1.0.0-beta.1",
+    "cpf-cnpj-validator": "^1.0.3",
+    "json-server": "0.17.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.52.0",
     "react-icons": "^5.2.1",
+    "react-loading-skeleton": "^3.4.0",
     "react-router-dom": "5.1.2",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nabla/vite-plugin-eslint": "^2.0.4",
