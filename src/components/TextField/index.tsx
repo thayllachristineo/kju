@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from 'react';
+import { InputHTMLAttributes, forwardRef } from 'react';
 
 import * as Styled from './TextField.styled';
 
@@ -9,19 +9,16 @@ type Props = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-const TextField: FC<Props> = ({
-  id,
-  label,
-  error,
-  ...props
-}) => {
-  return (
-    <div>
-      <Styled.Label htmlFor={id}>{label}</Styled.Label>
-      <Styled.Input {...props} />
-      <Styled.Error>{error}</Styled.Error>
-    </div>
-  );
-};
+const TextField = forwardRef<HTMLInputElement, Props>(
+  ({ id, label, error, ...props }, ref) => {
+    return (
+      <div>
+        <Styled.Label htmlFor={id}>{label}</Styled.Label>
+        <Styled.Input {...props} ref={ref} />
+        <Styled.Error>{error}</Styled.Error>
+      </div>
+    );
+  },
+);
 
 export default TextField;
