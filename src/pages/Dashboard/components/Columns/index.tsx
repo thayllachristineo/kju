@@ -1,45 +1,89 @@
-import * as S from './styles';
+import { FC } from 'react';
+
+import * as Styled from './styles';
+
 import RegistrationCard from '../RegistrationCard';
+import {
+  Registration,
+  RegistrationStatus,
+} from '~/types/registration';
 
 const allColumns = [
-  { status: 'REVIEW', title: 'Pronto para revisar' },
-  { status: 'APPROVED', title: 'Aprovado' },
-  { status: 'REPROVED', title: 'Reprovado' },
+  {
+    status: RegistrationStatus.REVIEW,
+    title: 'Pronto para revisar',
+  },
+  {
+    status: RegistrationStatus.APPROVED,
+    title: 'Aprovado',
+  },
+  {
+    status: RegistrationStatus.REPROVED,
+    title: 'Reprovado',
+  },
 ];
 
 type Props = {
-  registrations?: any[];
+  registrations?: Registration[] | null;
+  fetchRegistrations: () => Promise<void>;
+  isLoading: boolean;
+  shouldShowSkeleton: boolean;
 };
-const Collumns = (props: Props) => {
+const Columns: FC<Props> = ({
+  registrations,
+  fetchRegistrations,
+  isLoading,
+  shouldShowSkeleton,
+}) => {
+  const statuses: Record<
+    (typeof allColumns)[number]['status'],
+    any
+  > = {
+    [RegistrationStatus.REVIEW]: {
+      backgroundColor: '#FDF8E9',
+      color: '#EFC24D',
+    },
+    [RegistrationStatus.APPROVED]: {
+      backgroundColor: '#EEEEFD',
+      color: '#4242DF',
+    },
+    [RegistrationStatus.REPROVED]: {
+      backgroundColor: '#FBEDF6',
+      color: '#CE2893',
+    },
+  };
+
   return (
-    <S.Container>
-      {allColumns.map((collum) => {
+    <Styled.Container>
+      {allColumns.map(({ title, status }) => {
         return (
-          <S.Column
-            status={collum.status}
-            key={collum.title}
-          >
+          <Styled.Column key={title} {...statuses[status]}>
             <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
-              </S.TitleColumn>
-              <S.CollumContent>
-                {props?.registrations?.map(
-                  (registration) => {
+              <Styled.TitleColumn {...statuses}>
+                {title}
+              </Styled.TitleColumn>
+              <Styled.ColumnContent>
+                {registrations
+                  ?.filter(
+                    (registration) =>
+                      registration.status === status,
+                  )
+                  .map((registration) => {
                     return (
                       <RegistrationCard
                         data={registration}
                         key={registration.id}
+                        onMutation={fetchRegistrations}
+                        isLoading={isLoading}
                       />
                     );
-                  },
-                )}
-              </S.CollumContent>
+                  })}
+              </Styled.ColumnContent>
             </>
-          </S.Column>
+          </Styled.Column>
         );
       })}
-    </S.Container>
+    </Styled.Container>
   );
 };
-export default Collumns;
+export default Columns;
