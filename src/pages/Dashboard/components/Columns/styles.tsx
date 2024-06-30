@@ -25,4 +25,9 @@ export const ColumnContent = styled.div`
   overflow: auto;
 `;
 
+export const SkeletonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 16px;
 `;

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Skeleton from 'react-loading-skeleton';
 
 import * as Styled from './styles';
 
@@ -63,6 +64,13 @@ const Columns: FC<Props> = ({
                 {title}
               </Styled.TitleColumn>
               <Styled.ColumnContent>
+                {isLoading && shouldShowSkeleton && (
+                  <Styled.SkeletonContainer>
+                    <Skeleton height={170} />
+                    <Skeleton height={170} />
+                    <Skeleton height={170} />
+                  </Styled.SkeletonContainer>
+                )}
                 {registrations
                   ?.filter(
                     (registration) =>
