@@ -1,7 +1,6 @@
 import { ChangeEvent, FC, useState } from 'react';
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 import { HiRefresh } from 'react-icons/hi';
-import { useHistory } from 'react-router-dom';
 
 import Button from '~/components/Button';
 import IconButton from '~/components/IconButton';
