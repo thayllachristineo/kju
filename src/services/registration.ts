@@ -1,16 +1,19 @@
 import {
   Registration,
+  RegistrationFormData,
   RegistrationStatus,
 } from '../types/registration';
 
 const url = 'http://localhost:3000/registrations';
 
 export const addRegistration = async ({
-  employeeName,
+  name,
   email,
   cpf,
   admissionDate,
-}: Registration): Promise<Registration | undefined> => {
+}: RegistrationFormData): Promise<
+  Registration | undefined
+> => {
   try {
     const date = new Date(admissionDate);
     const formattedDate = date.toLocaleDateString('pt-BR', {
@@ -23,11 +26,11 @@ export const addRegistration = async ({
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        employeeName: employeeName,
+        employeeName: name,
         email: email,
         cpf: cpf,
         admissionDate: formattedDate,
-        status: 'REVIEW',
+        status: RegistrationStatus.REVIEW,
       }),
     });
 
