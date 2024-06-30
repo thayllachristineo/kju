@@ -1,5 +1,6 @@
 import Router from '~/router';
-import { Header } from './components/Header';
+import Header from './components/Header';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
   return (
