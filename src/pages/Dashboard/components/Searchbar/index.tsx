@@ -1,28 +1,84 @@
+import { ChangeEvent, FC, useState } from 'react';
+import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 import { HiRefresh } from 'react-icons/hi';
 import { useHistory } from 'react-router-dom';
-import Button from '~/components/Buttons';
-import { IconButton } from '~/components/Buttons/IconButton';
+
+import Button from '~/components/Button';
+import IconButton from '~/components/IconButton';
 import TextField from '~/components/TextField';
 import routes from '~/router/routes';
-import * as S from './styles';
-export const SearchBar = () => {
+import { cpfMask } from '~/utils';
+
+import * as Styled from './styles';
+
+type Props = {
+  fetchRegistrationByCpf: (cpf: string) => void;
+  fetchRegistrations: () => void;
+};
+
+export const SearchBar: FC<Props> = ({
+  fetchRegistrationByCpf,
+  fetchRegistrations,
+}) => {
   const history = useHistory();
+
+  const [cpfValue, setCpfValue] = useState('');
+  const [cpfError, setCpfError] = useState(false);
+  const [madeRequest, setMadeRequest] = useState(false);
 
   const goToNewAdmissionPage = () => {
     history.push(routes.newUser);
   };
 
+  const handleCpfChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    const { value } = event.target;
+
+    setCpfValue(cpfMask(value));
+
+    if (value && !cpfValidator.isValid(value)) {
+      setCpfError(true);
+    }
+
+    if (!value) setCpfError(false);
+
+    if (!value && madeRequest) {
+      setMadeRequest(false);
+      fetchRegistrations();
+      setCpfError(false);
+    }
+
+    if (cpfValidator.isValid(value)) {
+      setCpfError(false);
+      setMadeRequest(true);
+      fetchRegistrationByCpf(value.replace(/[^0-9]+/g, ''));
+    }
+  };
   return (
-    <S.Container>
-      <TextField placeholder="Digite um CPF válido" />
-      <S.Actions>
-        <IconButton aria-label="refetch">
+    <Styled.Container>
+      <TextField
+        placeholder="Digite um CPF válido"
+        onChange={handleCpfChange}
+        value={cpfValue}
+        error={cpfError ? 'CPF inválido' : undefined}
+      />
+      <Styled.Actions>
+        <IconButton
+          variant="outline"
+          aria-label="refetch"
+          onClick={fetchRegistrations}
+        >
           <HiRefresh />
         </IconButton>
-        <Button onClick={() => goToNewAdmissionPage()}>
+        <Button
+          size="large"
+          color="darkGreen"
+          onClick={() => goToNewAdmissionPage()}
+        >
           Nova Admissão
         </Button>
-      </S.Actions>
-    </S.Container>
+      </Styled.Actions>
+    </Styled.Container>
   );
 };
