@@ -3,6 +3,7 @@ import {
   FC,
   PropsWithChildren,
 } from 'react';
+import { Link } from 'react-router-dom';
 
 import * as Styled from './Button.styled';
 
@@ -10,6 +11,7 @@ type Props = {
   size?: 'small' | 'large';
   color?: 'pink' | 'orange' | 'green' | 'darkGreen';
   loading?: boolean;
+  to?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button: FC<PropsWithChildren<Props>> = ({
@@ -17,6 +19,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
   color = 'pink',
   disabled,
   size = 'small',
+  to,
   ...props
 }) => {
   const sizes = {
@@ -60,6 +63,8 @@ const Button: FC<PropsWithChildren<Props>> = ({
       {...colors}
       {...disabledStyles}
       {...props}
+      to={to}
+      as={to ? Link : 'button'}
     >
       {children}
     </Styled.Button>
@@ -67,5 +72,3 @@ const Button: FC<PropsWithChildren<Props>> = ({
 };
 
 export default Button;
-
-// <Button size="small" color="red" loading >bla </Button>

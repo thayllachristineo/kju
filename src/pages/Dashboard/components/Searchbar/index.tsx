@@ -26,10 +26,6 @@ export const SearchBar: FC<Props> = ({
   const [cpfError, setCpfError] = useState(false);
   const [madeRequest, setMadeRequest] = useState(false);
 
-  const goToNewAdmissionPage = () => {
-    history.push(routes.newUser);
-  };
-
   const handleCpfChange = (
     event: ChangeEvent<HTMLInputElement>,
   ) => {
@@ -74,7 +70,7 @@ export const SearchBar: FC<Props> = ({
         <Button
           size="large"
           color="darkGreen"
-          onClick={() => goToNewAdmissionPage()}
+          to={routes.newUser}
         >
           Nova Admissão
         </Button>

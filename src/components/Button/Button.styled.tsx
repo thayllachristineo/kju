@@ -24,4 +24,5 @@ export const Button = styled.button<{
   outline: none;
   padding: ${(props) => props.padding};
   pointer-events: ${(props) => props.pointerEvents};
+  text-decoration: none;
 `;
