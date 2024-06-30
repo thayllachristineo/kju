@@ -20,8 +20,6 @@ export const SearchBar: FC<Props> = ({
   fetchRegistrationByCpf,
   fetchRegistrations,
 }) => {
-  const history = useHistory();
-
   const [cpfValue, setCpfValue] = useState('');
   const [cpfError, setCpfError] = useState(false);
   const [madeRequest, setMadeRequest] = useState(false);
