@@ -2,7 +2,8 @@ import {
   Registration,
   RegistrationFormData,
   RegistrationStatus,
-} from '../types/registration';
+} from '~/types/registration';
+import { cpfToNumber } from '~/utils/cpf';
 
 const url = 'http://localhost:3000/registrations';
 
@@ -28,7 +29,7 @@ export const addRegistration = async ({
       body: JSON.stringify({
         employeeName: name,
         email: email,
-        cpf: cpf,
+        cpf: cpfToNumber(cpf),
         admissionDate: formattedDate,
         status: RegistrationStatus.REVIEW,
       }),

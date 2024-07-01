@@ -7,3 +7,6 @@ export const cpfMask = (value: string) => {
     .replace(/(-\d{2})\d+?$/, '$1');
 };
 
+export const cpfToNumber = (cpf: string) => {
+  return cpf.replace(/\D/g, '');
+};
