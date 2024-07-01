@@ -92,7 +92,7 @@ const NewUserPage = () => {
   };
 
   return (
-    <Styled.Container onSubmit={handleSubmit(onSubmit)}>
+    <Styled.Form onSubmit={handleSubmit(onSubmit)}>
       <Styled.Card>
         <IconButton
           variant="outline"
@@ -148,7 +148,7 @@ const NewUserPage = () => {
           </Button>
         </Styled.ButtonGroup>
       </Styled.Card>
-    </Styled.Container>
+    </Styled.Form>
   );
 };
 

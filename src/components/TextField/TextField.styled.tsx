@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Input = styled.input`
   background-color: #ffffff;
   border-radius: 8px;
@@ -11,8 +16,6 @@ export const Input = styled.input`
   min-height: 36px;
   padding: 0 8px;
   transition: all 0.2s ease-in-out 0s;
-  vertical-align: middle;
-  width: 100%;
   :focus {
     border: 1px solid #007c89;
     box-shadow: inset 0 0 0 1px #007c89;

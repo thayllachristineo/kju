@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Button = styled.button<{
   backgroundColor?: string;
@@ -7,6 +7,13 @@ export const Button = styled.button<{
   fontSize?: string;
   fontWeight?: string;
   height?: string;
+  mobile?: {
+    fontSize?: string;
+    fontWeight?: string;
+    height?: string;
+    padding?: string;
+    width?: string;
+  };
   padding?: string;
   pointerEvents?: string;
 }>`
@@ -19,10 +26,22 @@ export const Button = styled.button<{
   display: flex;
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
-  gap: 8px;
+  justify-content: center;
   height: ${(props) => props.height};
   outline: none;
   padding: ${(props) => props.padding};
   pointer-events: ${(props) => props.pointerEvents};
   text-decoration: none;
+
+  ${({ mobile }) =>
+    mobile &&
+    css`
+      @media only screen and (max-width: 768px) {
+        font-size: ${mobile?.fontSize};
+        font-weight: ${mobile?.fontWeight};
+        height: ${mobile?.height};
+        padding: ${mobile?.padding};
+        width: ${mobile?.width};
+      }
+    `};
 `;

@@ -34,8 +34,15 @@ const Button: FC<PropsWithChildren<Props>> = ({
       borderRadius: '36px',
       fontSize: '16px',
       fontWeight: 600,
-      height: '56px',
+      height: '48px',
       padding: '8px 32px',
+      mobile: {
+        fontSize: '12px',
+        fontWeight: 500,
+        height: '24px',
+        padding: '4px 16px',
+        width: '90px',
+      },
     },
   }[size];
 

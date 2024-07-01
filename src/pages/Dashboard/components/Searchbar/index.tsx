@@ -59,7 +59,7 @@ export const SearchBar: FC<Props> = ({
       <Styled.Actions>
         <IconButton
           variant="outline"
-          aria-label="refetch"
+          aria-label="Atualiza registros"
           onClick={fetchRegistrations}
         >
           <HiRefresh />

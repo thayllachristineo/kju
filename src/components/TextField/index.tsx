@@ -12,11 +12,11 @@ type Props = {
 const TextField = forwardRef<HTMLInputElement, Props>(
   ({ id, label, error, ...props }, ref) => {
     return (
-      <div>
+      <Styled.Container>
         <Styled.Label htmlFor={id}>{label}</Styled.Label>
         <Styled.Input {...props} ref={ref} />
         <Styled.Error>{error}</Styled.Error>
-      </div>
+      </Styled.Container>
     );
   },
 );
