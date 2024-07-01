@@ -1,6 +1,10 @@
+import 'react-loading-skeleton/dist/skeleton.css';
+import 'react-responsive-modal/styles.css';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 import Router from '~/router';
 import Header from './components/Header';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
   return (
@@ -9,6 +13,7 @@ function App() {
         <h1>Caju Front Teste</h1>
       </Header>
       <Router />
+      <ToastContainer />
     </>
   );
 }
