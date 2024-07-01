@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
 import {
   HiOutlineMail,
@@ -11,6 +11,7 @@ import {
 import * as Styled from './styles';
 
 import Button from '~/components/Button';
+import ConfirmationModal from '~/components/ConfirmationModal';
 import IconButton from '~/components/IconButton';
 import {
   deleteRegistration,
@@ -39,29 +40,52 @@ const RegistrationCard: FC<Props> = ({
   isLoading,
   onMutation,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentAction, setCurrentAction] = useState<
+    RegistrationStatus | 'DELETE'
+  >();
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setCurrentAction(undefined);
+  };
+
+  const handleOpenModal = (
+    action: RegistrationStatus | 'DELETE',
+  ) => {
+    setCurrentAction(action);
+    openModal();
+  };
+
   const handleReprove = async () => {
+    closeModal();
     if (status === RegistrationStatus.REPROVED) return;
 
     await setRegistrationStatus(
       id,
       RegistrationStatus.REPROVED,
     );
+    setCurrentAction(undefined);
 
     onMutation?.();
   };
 
   const handleApprove = async () => {
+    closeModal();
     if (status === RegistrationStatus.APPROVED) return;
 
     await setRegistrationStatus(
       id,
       RegistrationStatus.APPROVED,
     );
+    setCurrentAction(undefined);
 
     onMutation?.();
   };
 
   const handleReviewAgain = async () => {
+    closeModal();
     if (status === RegistrationStatus.REVIEW) return;
 
     await setRegistrationStatus(
@@ -69,13 +93,46 @@ const RegistrationCard: FC<Props> = ({
       RegistrationStatus.REVIEW,
     );
 
+    setCurrentAction(undefined);
+
     onMutation?.();
   };
 
   const handleDelete = async () => {
+    closeModal();
     await deleteRegistration(id);
 
+    setCurrentAction(undefined);
+
+
     onMutation?.();
+  };
+
+  const confirmationModalProps = {
+    [RegistrationStatus.REPROVED]: {
+      title: 'Reprovar registro',
+      message:
+        'Tem certeza que deseja reprovar esse registro?',
+      onConfirm: handleReprove,
+    },
+    [RegistrationStatus.APPROVED]: {
+      title: 'Aprovar registro',
+      message:
+        'Tem certeza que deseja aprovar esse registro?',
+      onConfirm: handleApprove,
+    },
+    [RegistrationStatus.REVIEW]: {
+      title: 'Revisar registro novamente',
+      message:
+        'Tem certeza que deseja revisar novamente esse registro?',
+      onConfirm: handleReviewAgain,
+    },
+    DELETE: {
+      title: 'Excluir registro',
+      message:
+        'Tem certeza que deseja excluir esse registro?',
+      onConfirm: handleDelete,
+    },
   };
 
   return (
@@ -101,7 +158,9 @@ const RegistrationCard: FC<Props> = ({
           {status !== RegistrationStatus.REPROVED && (
             <Button
               color="pink"
-              onClick={handleReprove}
+              onClick={() =>
+                handleOpenModal(RegistrationStatus.REPROVED)
+              }
               disabled={isLoading}
             >
               Reprovar
@@ -110,7 +169,9 @@ const RegistrationCard: FC<Props> = ({
           {status !== RegistrationStatus.APPROVED && (
             <Button
               color="green"
-              onClick={handleApprove}
+              onClick={() =>
+                handleOpenModal(RegistrationStatus.APPROVED)
+              }
               disabled={isLoading}
             >
               Aprovar
@@ -119,17 +180,36 @@ const RegistrationCard: FC<Props> = ({
           {status !== RegistrationStatus.REVIEW && (
             <Button
               color="orange"
-              onClick={handleReviewAgain}
+              onClick={() =>
+                handleOpenModal(RegistrationStatus.REVIEW)
+              }
               disabled={isLoading}
             >
               Revisar novamente
             </Button>
           )}
         </div>
-        <IconButton onClick={handleDelete}>
+        <IconButton
+          onClick={() => handleOpenModal('DELETE')}
+        >
           <HiOutlineTrash />
         </IconButton>
       </Styled.Actions>
+      {currentAction && (
+        <ConfirmationModal
+          isOpen={isModalOpen}
+          title={
+            confirmationModalProps[currentAction].title
+          }
+          message={
+            confirmationModalProps[currentAction].message
+          }
+          onConfirm={
+            confirmationModalProps[currentAction].onConfirm
+          }
+          onClose={closeModal}
+        />
+      )}
     </Styled.Card>
   );
 };
