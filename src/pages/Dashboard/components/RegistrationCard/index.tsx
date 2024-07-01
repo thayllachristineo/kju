@@ -7,6 +7,7 @@ import {
   HiOutlineTrash,
   HiOutlineIdentification,
 } from 'react-icons/hi';
+import { toast } from 'react-toastify';
 
 import * as Styled from './styles';
 
@@ -45,6 +46,18 @@ const RegistrationCard: FC<Props> = ({
     RegistrationStatus | 'DELETE'
   >();
 
+  const toastSuccess = (message: string) =>
+    toast.success(message, {
+      position: 'bottom-center',
+      autoClose: 2000,
+    });
+
+  const toastError = (message: string) =>
+    toast.error(message, {
+      position: 'bottom-center',
+      autoClose: 2000,
+    });
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
@@ -59,6 +72,7 @@ const RegistrationCard: FC<Props> = ({
   };
 
   const handleReprove = async () => {
+    try {
     closeModal();
     if (status === RegistrationStatus.REPROVED) return;
 
@@ -66,12 +80,20 @@ const RegistrationCard: FC<Props> = ({
       id,
       RegistrationStatus.REPROVED,
     );
+
+      toastSuccess('Registro reprovado');
+
     setCurrentAction(undefined);
 
     onMutation?.();
+    } catch (error) {
+      console.error(error);
+      toastError('Erro ao reprovar registro');
+    }
   };
 
   const handleApprove = async () => {
+    try {
     closeModal();
     if (status === RegistrationStatus.APPROVED) return;
 
@@ -79,12 +101,20 @@ const RegistrationCard: FC<Props> = ({
       id,
       RegistrationStatus.APPROVED,
     );
+
+      toastSuccess('Registro aprovado');
+
     setCurrentAction(undefined);
 
     onMutation?.();
+    } catch (error) {
+      console.error(error);
+      toastError('Erro ao aprovar registro');
+    }
   };
 
   const handleReviewAgain = async () => {
+    try {
     closeModal();
     if (status === RegistrationStatus.REVIEW) return;
 
@@ -93,19 +123,31 @@ const RegistrationCard: FC<Props> = ({
       RegistrationStatus.REVIEW,
     );
 
+      toastSuccess('Registro a ser revisado');
+
     setCurrentAction(undefined);
 
     onMutation?.();
+    } catch (error) {
+      console.error(error);
+      toastError('Erro ao reprovar registro');
+    }
   };
 
   const handleDelete = async () => {
+    try {
     closeModal();
     await deleteRegistration(id);
 
     setCurrentAction(undefined);
 
+      toastSuccess('Registro deletado');
 
     onMutation?.();
+    } catch (error) {
+      console.error(error);
+      toastError('Erro ao deletar registro');
+    }
   };
 
   const confirmationModalProps = {
