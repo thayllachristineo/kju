@@ -13,7 +13,7 @@ import IconButton from '~/components/IconButton';
 import routes from '~/router/routes';
 import { addRegistration } from '~/services/registration';
 import { RegistrationFormData } from '~/types/registration';
-import { cpfMask } from '~/utils';
+import { cpfMask } from '~/utils/cpf';
 
 import * as Styled from './NewUser.styled';
 
@@ -125,6 +125,7 @@ const NewUserPage = () => {
               inputMode="numeric"
               onChange={(e) => {
                 onChange(cpfMask(e.target.value));
+                console.log(e.target.value, value);
               }}
               value={value}
             />

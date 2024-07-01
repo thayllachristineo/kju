@@ -6,7 +6,7 @@ import Button from '~/components/Button';
 import IconButton from '~/components/IconButton';
 import TextField from '~/components/TextField';
 import routes from '~/router/routes';
-import { cpfMask } from '~/utils';
+import { cpfMask } from '~/utils/cpf';
 
 import * as Styled from './styles';
 
