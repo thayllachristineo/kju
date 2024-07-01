@@ -5,6 +5,7 @@ import { z, ZodType } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, useForm } from 'react-hook-form';
 import { cpf as cpfValidator } from 'cpf-cnpj-validator';
+import { toast } from 'react-toastify';
 
 import TextField from '~/components/TextField';
 import Button from '~/components/Button';
@@ -61,18 +62,33 @@ const NewUserPage = () => {
   const history = useHistory();
 
   const onSubmit = async (data: RegistrationFormData) => {
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
+      await addRegistration({
+        name: data.name,
+        email: data.email,
+        cpf: data.cpf,
+        admissionDate: data.admissionDate,
+      });
 
-    await addRegistration({
-      name: data.name,
-      email: data.email,
-      cpf: data.cpf,
-      admissionDate: data.admissionDate,
-    });
+      toast.success('Registro adicionado', {
+        position: 'bottom-center',
+        autoClose: 2000,
+      });
 
-    setIsLoading(false);
+      setIsLoading(false);
 
-    history.push(routes.dashboard);
+      history.push(routes.dashboard);
+    } catch (e) {
+      console.error(e);
+
+      toast.error('Erro ao adicionar registro', {
+        position: 'bottom-center',
+        autoClose: 2000,
+      });
+
+      setIsLoading(false);
+    }
   };
 
   return (
