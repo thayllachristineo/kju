@@ -73,19 +73,19 @@ const RegistrationCard: FC<Props> = ({
 
   const handleReprove = async () => {
     try {
-    closeModal();
-    if (status === RegistrationStatus.REPROVED) return;
+      closeModal();
+      if (status === RegistrationStatus.REPROVED) return;
 
-    await setRegistrationStatus(
-      id,
-      RegistrationStatus.REPROVED,
-    );
+      await setRegistrationStatus(
+        id,
+        RegistrationStatus.REPROVED,
+      );
 
       toastSuccess('Registro reprovado');
 
-    setCurrentAction(undefined);
+      setCurrentAction(undefined);
 
-    onMutation?.();
+      onMutation?.();
     } catch (error) {
       console.error(error);
       toastError('Erro ao reprovar registro');
@@ -94,19 +94,19 @@ const RegistrationCard: FC<Props> = ({
 
   const handleApprove = async () => {
     try {
-    closeModal();
-    if (status === RegistrationStatus.APPROVED) return;
+      closeModal();
+      if (status === RegistrationStatus.APPROVED) return;
 
-    await setRegistrationStatus(
-      id,
-      RegistrationStatus.APPROVED,
-    );
+      await setRegistrationStatus(
+        id,
+        RegistrationStatus.APPROVED,
+      );
 
       toastSuccess('Registro aprovado');
 
-    setCurrentAction(undefined);
+      setCurrentAction(undefined);
 
-    onMutation?.();
+      onMutation?.();
     } catch (error) {
       console.error(error);
       toastError('Erro ao aprovar registro');
@@ -115,19 +115,19 @@ const RegistrationCard: FC<Props> = ({
 
   const handleReviewAgain = async () => {
     try {
-    closeModal();
-    if (status === RegistrationStatus.REVIEW) return;
+      closeModal();
+      if (status === RegistrationStatus.REVIEW) return;
 
-    await setRegistrationStatus(
-      id,
-      RegistrationStatus.REVIEW,
-    );
+      await setRegistrationStatus(
+        id,
+        RegistrationStatus.REVIEW,
+      );
 
       toastSuccess('Registro a ser revisado');
 
-    setCurrentAction(undefined);
+      setCurrentAction(undefined);
 
-    onMutation?.();
+      onMutation?.();
     } catch (error) {
       console.error(error);
       toastError('Erro ao reprovar registro');
@@ -136,14 +136,14 @@ const RegistrationCard: FC<Props> = ({
 
   const handleDelete = async () => {
     try {
-    closeModal();
-    await deleteRegistration(id);
+      closeModal();
+      await deleteRegistration(id);
 
-    setCurrentAction(undefined);
+      setCurrentAction(undefined);
 
       toastSuccess('Registro deletado');
 
-    onMutation?.();
+      onMutation?.();
     } catch (error) {
       console.error(error);
       toastError('Erro ao deletar registro');
@@ -185,7 +185,7 @@ const RegistrationCard: FC<Props> = ({
       </Styled.IconAndText>
       <Styled.IconAndText>
         <HiOutlineMail />
-        <p>{email}</p>
+        <Styled.Email>{email}</Styled.Email>
       </Styled.IconAndText>
       <Styled.IconAndText>
         <HiOutlineCalendar />

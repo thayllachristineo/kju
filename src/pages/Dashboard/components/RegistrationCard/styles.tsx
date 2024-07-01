@@ -26,6 +26,12 @@ export const IconAndText = styled.div`
   gap: 8px;
 `;
 
+export const Email = styled.p`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+`;
+
 export const Actions = styled.div`
   display: flex;
   gap: 4px;
