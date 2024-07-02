@@ -5,7 +5,7 @@ import {
 } from '~/types/registration';
 import { cpfToNumber } from '~/utils/cpf';
 
-const url = 'http://localhost:3000/registrations';
+const url = `${import.meta.env.VITE_API_BASE_URL}/registrations`;
 
 export const addRegistration = async ({
   name,
