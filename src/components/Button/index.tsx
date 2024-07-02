@@ -66,13 +66,13 @@ const Button: FC<PropsWithChildren<Props>> = ({
 
   return (
     <Styled.Button
+      as={to ? Link : 'button'}
+      to={to}
+      disabled={disabled}
       {...sizes}
       {...colors}
       {...disabledStyles}
       {...props}
-      to={to}
-      as={to ? Link : 'button'}
-      disabled={disabled}
     >
       {children}
     </Styled.Button>

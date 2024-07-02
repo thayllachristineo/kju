@@ -60,7 +60,7 @@ const Columns: FC<Props> = ({
         return (
           <Styled.Column key={title} {...statuses[status]}>
             <>
-              <Styled.TitleColumn {...statuses}>
+              <Styled.TitleColumn {...statuses[status]}>
                 {title}
               </Styled.TitleColumn>
               <Styled.ColumnContent>

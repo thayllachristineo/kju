@@ -5,11 +5,11 @@ export const Button = styled.button<{
   borderRadius?: string;
   color?: string;
   fontSize?: string;
-  fontWeight?: string;
+  fontWeight?: number;
   height?: string;
   mobile?: {
     fontSize?: string;
-    fontWeight?: string;
+    fontWeight?: number;
     height?: string;
     padding?: string;
     width?: string;

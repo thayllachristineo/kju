@@ -15,7 +15,7 @@ export const Column = styled.div<{
   height: calc(100dvh - 200px);
 `;
 
-export const TitleColumn = styled.h3<{ color: string }>`
+export const TitleColumn = styled.h3<{ color?: string }>`
   color: ${(props) => props.color};
   margin: 24px;
 `;
