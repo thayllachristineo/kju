@@ -72,6 +72,7 @@ const Button: FC<PropsWithChildren<Props>> = ({
       {...props}
       to={to}
       as={to ? Link : 'button'}
+      disabled={disabled}
     >
       {children}
     </Styled.Button>

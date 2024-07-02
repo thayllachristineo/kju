@@ -14,7 +14,7 @@ const TextField = forwardRef<HTMLInputElement, Props>(
     return (
       <Styled.Container>
         <Styled.Label htmlFor={id}>{label}</Styled.Label>
-        <Styled.Input {...props} ref={ref} />
+        <Styled.Input {...props} id={id} ref={ref} />
         <Styled.Error>{error}</Styled.Error>
       </Styled.Container>
     );
