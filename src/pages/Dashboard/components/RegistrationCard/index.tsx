@@ -197,28 +197,34 @@ const RegistrationCard: FC<Props> = ({
       </Styled.IconAndText>
       <Styled.Actions>
         <div>
-          {status !== RegistrationStatus.REPROVED && (
-            <Button
-              color="pink"
-              onClick={() =>
-                handleOpenModal(RegistrationStatus.REPROVED)
-              }
-              disabled={isLoading}
-            >
-              Reprovar
-            </Button>
-          )}
-          {status !== RegistrationStatus.APPROVED && (
-            <Button
-              color="green"
-              onClick={() =>
-                handleOpenModal(RegistrationStatus.APPROVED)
-              }
-              disabled={isLoading}
-            >
-              Aprovar
-            </Button>
-          )}
+          {status !== RegistrationStatus.REPROVED &&
+            status === RegistrationStatus.REVIEW && (
+              <Button
+                color="pink"
+                onClick={() =>
+                  handleOpenModal(
+                    RegistrationStatus.REPROVED,
+                  )
+                }
+                disabled={isLoading}
+              >
+                Reprovar
+              </Button>
+            )}
+          {status !== RegistrationStatus.APPROVED &&
+            status === RegistrationStatus.REVIEW && (
+              <Button
+                color="green"
+                onClick={() =>
+                  handleOpenModal(
+                    RegistrationStatus.APPROVED,
+                  )
+                }
+                disabled={isLoading}
+              >
+                Aprovar
+              </Button>
+            )}
           {status !== RegistrationStatus.REVIEW && (
             <Button
               color="orange"
