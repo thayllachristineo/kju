@@ -1,0 +1,28 @@
+name: Client Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '20.x'
+      - name: Install yarn dependencies
+        run: yarn install
+      - name: Run Prettier
+        run: yarn prettier
+      - name: Run Lint
+        run: yarn lint
+      - name: Run Test
+        run: yarn test -- --coverage
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
