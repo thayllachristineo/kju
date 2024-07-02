@@ -1,11 +1,12 @@
 {
   "name": "caju-front-test-1",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "init:db": "json-server --watch db.json",
+    "dev": "concurrently \"yarn start\" \"yarn server --delay 1000\"",
+    "start": "vite",
+    "server": "json-server --watch db.json",
     "build": "tsc && vite build",
     "test": "jest --verbose --no-cache",
     "test:dev": "jest --watch --verbose --no-cache",
@@ -44,6 +45,7 @@
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
+    "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
