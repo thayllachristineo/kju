@@ -1,6 +1,6 @@
 # Dashboard de registros
 
-[![Coverage Status](https://coveralls.io/repos/github/thayllachristineo/kju/badge.svg?branch=main)](https://coveralls.io/github/thayllachristineo/kju?branch=main) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/thayllachristineo/kju/.github%2Fworkflows%2Fclient-build.yml) 
+[![Coverage Status](https://coveralls.io/repos/github/thayllachristineo/kju/badge.svg?branch=main)](https://coveralls.io/github/thayllachristineo/kju?branch=main) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/thayllachristineo/kju/.github%2Fworkflows%2Fclient-build.yml) [![Netlify Status](https://api.netlify.com/api/v1/badges/d26e51ec-c806-4f6a-aa02-b882f680a10f/deploy-status)](https://app.netlify.com/sites/kju/deploys)
 
 > Este repositório contém a solução de teste técnico Caju para uma posição de front-end.
 
@@ -48,7 +48,12 @@ git clone git@github.com:thayllachristineo/kju.git
 yarn install
 ```
 
-3 - Rode no servidor de desenvolvimento: 
+3 - Crie um arquivo `.env` similar ao `.env.example` e adicione o seguinte valor: 
+```
+VITE_API_BASE_URL=http://localhost:3000
+```
+
+4 - Agora, retorne ao terminal e dê start ao servidor de desenvolvimento: 
 ```
 yarn dev
 ```
@@ -63,4 +68,16 @@ Foram criados testes unitários para alguns componentes. Para visualizá-los, ba
 
 ```
 yarn  test
+```
+
+
+## Navegação via Netlifly
+
+Através da url abaixo é possível visualizar e interagir com o *client* da aplicação:
+
+[Dashboard de Registros](main--kju.netlify.app/#/dashboard)
+
+ Porém, para que seja possível visualizar dados, é necessário rodar o *server* localmente através do seguinte comando: 
+```
+yarn server
 ```
