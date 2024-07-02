@@ -1,121 +1,66 @@
+# Dashboard de registros
 
-# Caju Front End Teste
+[![Coverage Status](https://coveralls.io/repos/github/thayllachristineo/kju/badge.svg?branch=main)](https://coveralls.io/github/thayllachristineo/kju?branch=main) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/thayllachristineo/kju/.github%2Fworkflows%2Fclient-build.yml) 
 
-Esse é um teste para você demonstrar suas experiencia como front end, a aplicação basicamente se divide em duas telas, o `Dashboard` e um `Formulário`.
-Voce deverá criar uma plataforma de admissão que permita o usuario adicionar uma admissão com as opções de aprovar, reprovar ou excluir.
+> Este repositório contém a solução de teste técnico Caju para uma posição de front-end.
 
-O `Dashboard` mostra todas as admissões criadas, com as opções de Aprovar, reprovar, e excluir.
+## Implementações
 
-![Screenshot 2024-06-11 at 11 48 24 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/fedeff5c-a0d3-4df1-aebd-1f2d25c56a48)
+### Requisitos obrigatórios 
+- [X] Tipagens com TypeScript;
+- [X] Componente `<ConfirmationModal />` para confirmação de ações;
+- [X] Adição da biblioteca `react-toastify` para notificar *status* de erro ou sucesso em uma *request*;
+- [X] Os botões de **Aprovar** e **Reprovar** devem aparecer somente em registros com *status* de **REVIEW**.
+- [X] O botão de **Revisar Novamente**  deve aparecer somente em registros com *status* de **APPROVED** ou **REPROVED**.
 
-Dashboard com os cards. (Utilize o componente `RegistrationCard`)
+### Requisitos não obrigatórios
+- [X] Criação de testes unitários para componentes;
+- [X] Configuração de CI/CD para deploy automatizado.
 
-![Screenshot 2024-06-11 at 1 52 35 PM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/3b002341-454b-4b24-82cb-6390656b56cc)
+### Especificações
 
-O `Formulario` exibe um formulário simples que será utilizado para preencher o dashboard com os dados.
+#### Para o dashboad: 
 
-![Screenshot 2024-06-11 at 11 48 47 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/bbbb211c-165f-40e5-b2af-61adafd61398)
+- [X] CRUD para adição, listagem, atualização e *delete* dos registros;
+- [X] Pesquisa de um registro através de um CPF válido e contido na listagem;
+- [X] Filtro de cards através do *status* de registro;
+- [X] `<Skeleton />` para loading de registros;
+- [X] Inativação de botões enquanto uma *request* é realizada; 
+- [X] Atualização de cards através de botão de atualizar;
+- [X] Adição de máscara de CPF para o campo de pesquisa.
 
-## Apresentanção do problema
 
-O desafio é melhorar a organização do projeto, refatorar o código e implementar algumas regras e novas funcionalidades(logo abaixo).
-Sinta-se a vontade para criar novas pastas, novos utils, contextos, custom hooks, o que achar melhor para deixar o projeto mais organizado e atigir as especificações abaixo.
+#### Para o formulário: 
 
+- [X] Validação de campos como nome, email e CPF; 
+- [X] Adição de máscara de CPF para o *input* de CPF;
+- [X] Adicionar dados na API de registros e direcionar para o dashboard.
 
-## Especificações
-
-### Dashboard
-  
-- Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
-- Filtrar os cards por coluna, usando o status.
-- Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
-- Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
-- Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
-- Implementar `DELETE` ao clicar no lixeira no card.
-- Implementar um loading na tela ao realizar requisições.
-- Realizar a requisição automaticamente ao preencher um CPF válido completo
-- Atualizar os dados (refetch) ao clicar no icone de atualizar
-- Adicionar máscara de CPF no campo de pesquisa.
-
-### Pesquisa por CPF
-
-Para realizar a pesquisa por CPF, utilize essa funcionalidade do json-web-server:
-<br/>
-https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
-
-### Formulário
-
-- Implementar validação no campo de `email` para que aceite apenas emails válidos
-- Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
-- Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
-- Implementar `POST` ao preencher todos os campos corretamentes.
-- Redirecionar ao `/dashboard` ao criar uma nova registration.
-
-## Regras de negócio
-
-- Implementar tipagem correta e enums em TypeScript.
-- Todas as requisições devem ter modal de confirmação da ação
-- Todas as requisições devem aparecer uma notificação de sucesso ou erro
-- O botão de `Reprovar` e `Aprovar` só deve aparecer em registrations com status `REVIEW` 
-- O botão `Revisar novamente` só deve aparecer em registration com status `REPROVED` ou `APPROVED`
-
-## API
-Você consumirá uma API mockada localmente, que será executada utilizando o json-server. Para mais informações consulte a [documentação](https://github.com/typicode/json-server/).
-
-Exemplo de Requisição:
+## Como rodar o projeto?
+1 - Clone o projeto para a sua máquina: 
 
 ```
-POST http://localhost:3000/registrations
-Content-Type: application/json
-{
-  "admissionDate": "23/10/2023",
-  "email": "maria@caju.com.br",
-  "employeeName": "Maria Silva",
-  "status": "REVIEW",
-  "cpf": "12345678901"
-}
+git clone git@github.com:thayllachristineo/kju.git
 ```
 
+2 - Instale as dependências: 
+```
+yarn install
+```
 
-## Extras (opcional)
-
-- Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
-- End-to-End (E2E) 
-- Documentação detalhada utilizando Storybook e Docusaurus
-- Configuração de CI/CD com deploy automatizado
-
-## Dicas e sugestões
-
-- Crie custom hooks para separar a lógica da camada de UI.
-- Utilize alguma lib de validação para o formulário
-- Crie testes que simulem o comportamento esperado do usuario.
-
-## Desenvolvimento
-
-```shell
-git clone https://github.com/caju-beneficios/caju-front-teste-1.git
-cd caju-front-test-1
-yarn 
+3 - Rode no servidor de desenvolvimento: 
+```
 yarn dev
 ```
 
-Abra outro terminal e execute: 
-```shell
-yarn init:db
+
+> Observação: Para que o *client* e o *server* rodem simultaneamente, sem a necessidade de dois terminais, foi adicionada a biblioteca `concurrently`.
+
+
+## Como rodar os testes?
+
+Foram criados testes unitários para alguns componentes. Para visualizá-los, basta rodar o comando abaixo em seu terminal: 
+
 ```
-
-Para os testes
-
-```shell
-yarn test:dev
+yarn  test
 ```
-Se tude tiver dado certo as seguintes portas estarão disponiveis:
-<br/>
-
-Aplicação http://localhost:3001/
-<br/>
-Json Web Server http://localhost:3000/
-
-``
-Para concluir o desenvolvimento, clone o repositório, faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
-``
