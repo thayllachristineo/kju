@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"yarn start\" \"yarn server --delay 1000\"",
+    "dev": "concurrently \"yarn start\" \"yarn server\"",
     "start": "vite",
-    "server": "json-server --watch db.json",
+    "server": "json-server --watch db.json --delay 1000",
     "build": "tsc && vite build",
     "test": "jest --verbose --no-cache",
     "test:dev": "jest --watch --verbose --no-cache",
